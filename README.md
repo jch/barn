@@ -109,10 +109,10 @@ Or install it yourself as:
 
 ## Contributing
 
-Check out [this guide](/blob/master/CONTRIBUTING.md) if you'd like to
+Check out [this guide](/CONTRIBUTING.md) if you'd like to
 contribute.
 
 ## License
 
-This project is licensed under the [MIT License](/blob/master/LICENSE.txt)
+This project is licensed under the [MIT License](/LICENSE.txt)
 
