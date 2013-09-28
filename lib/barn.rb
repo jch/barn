@@ -7,4 +7,8 @@ require "barn/builders/hash"
 
 module Barn
   extend Namespace
+
+  module Builders
+    autoload :ActiveRecord, 'barn/builders/activerecord'
+  end
 end

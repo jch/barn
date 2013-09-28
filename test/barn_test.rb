@@ -1,5 +1,7 @@
 require 'barn'
 require 'minitest/autorun'
+require 'active_record'
+require 'debugger'
 
 class BarnTest < MiniTest::Test
   def setup
@@ -46,5 +48,22 @@ class BarnTest < MiniTest::Test
 
     assert custom_barn.factories[:foo]
     assert custom_barn.factories[:bar]
+  end
+
+  class ::User < ActiveRecord::Base
+  end
+
+  def test_activerecord
+    ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
+    capture_io do
+      ActiveRecord::Schema.define do
+        create_table :users do |t|
+          t.string :email
+        end
+      end
+    end
+    Barn.build_chain.unshift Barn::Builders::ActiveRecord
+
+    assert_kind_of User, Barn.build(:user)
   end
 end
