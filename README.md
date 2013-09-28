@@ -7,8 +7,10 @@ Store lazily evaluated blocks for building test fixtures.
 ```ruby
 # Define factories with lazily evaluated blocks
 Barn.define :post do
-  :title => "What's Your Dream Barn Find?",
-  :published_at => Time.now
+  {
+    :title        => "What's Your Dream Barn Find?",
+    :published_at => Time.now
+  }
 end
 
 # Build instances and override default attributes
@@ -16,8 +18,10 @@ Barn.build(:post, :title => "Original Owner Jaguar E-Type For Sale")
 
 # Compose complex objects
 Barn.define :comment do
-  :post => build(:post),
-  :body => "That's a lot of hay for a little pay."
+  {
+    :post => build(:post),
+    :body => "That's a lot of hay for a little pay."
+  }
 end
 ```
 
@@ -66,7 +70,7 @@ Barn.build_chain
 ## Helpers
 
 Barn provides helpers to let you type less in your tests. Include
-`Barn.helpers` to skip typing `Barn.build` and `Barn.define`.
+`Barn::Helpers` to skip typing `Barn.build` and `Barn.define`.
 
 ```ruby
 # RSpec
@@ -78,9 +82,10 @@ describe "Post" do
   end
 end
 
-# ActiveSupport::TestCase
+# ActiveSupport::TestCase with a custom namespaced Barn
 class PostTest < ActiveSupport::TestCase
   include Barn::Helpers
+  self.barn = Factory::Post
 
   test "requires a title" do
     post = build(:post)
@@ -104,8 +109,10 @@ Or install it yourself as:
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Check out [this guide](/blob/master/CONTRIBUTING.md) if you'd like to
+contribute.
+
+## License
+
+This project is licensed under the [MIT License](/blob/master/LICENSE.txt)
+
