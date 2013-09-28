@@ -49,8 +49,9 @@ A build chain is a list of builders that are called to instantiate an instance.
 It's the same concept as Rack middleware, but we build object instances instead
 of HTTP responses. A builder is anything that responds to `build` and returns a
 contructed object. An environment hash of available options to passed to
-`build`. The default build chain has one builder, [Barn::Builders::HashMerge],
-that merges attributes into a hash. See [/lib/barn/builders] for more examples.
+`build`. The default build chain has one builder,
+[Barn::Builders::Hash](/lib/barn/builders/hash.rb), that merges attributes into
+a hash. See [/lib/barn/builders](/lib/barn/builders) for more examples.
 
 ```ruby
 # Inspect a build chain
