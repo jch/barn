@@ -56,7 +56,7 @@ a hash. See [/lib/barn/builders](/lib/barn/builders) for more examples.
 ```ruby
 # Inspect a build chain
 Barn.build_chain
-=> [Barn::Builders::HashMerge]  # Default is to merge hash attributes
+=> [Barn::Builders::Hash]  # Default is to merge hash attributes
 
 # After building hash attributes, instantiates an ActiveRecord object
 Barn.build_chain.unshift Barn::Builders::ActiveRecord
@@ -65,7 +65,7 @@ Barn.build_chain.unshift Barn::Builders::ActiveRecord
 Barn.build_chain.unshift Barn::Builders::Instrumentation
 
 Barn.build_chain
-=> [Barn::Builders::Instrumentation, Barn::Builders::ActiveRecord, Barn::Builders::HashMerge]
+=> [Barn::Builders::Instrumentation, Barn::Builders::ActiveRecord, Barn::Builders::Hash]
 ```
 
 ## Helpers
