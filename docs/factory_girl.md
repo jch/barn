@@ -69,7 +69,7 @@ Barn.define :crop do
     :tools => [:shovel, :hoe]
   }
 end
-
+```
 
 Let's break down what happens behind the scenes when we build a Crop
 `Barn.build`. First, we find a factory for `:crop`:
@@ -451,7 +451,7 @@ Barn.define :custom_object do
 end
 ```
 
-# TODO: This would fail custom construction... Maybe Builders::Hash should check
+* TODO: This would fail custom construction... Maybe Builders::Hash should check
 
 * Simple interface: `define` templates for your objects, and `build` to
   instantiate them.
