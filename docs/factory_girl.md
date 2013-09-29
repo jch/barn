@@ -119,9 +119,10 @@ We can compose more complex objects by defining factories in terms of other
 factories:
 
 ```ruby
-# Explicitly specify a class to instantiate
+# Specify explicit class to instantiate
 Barn.define :potato, :class => 'Crop' do
-  build(:crop, :name => 'Potato')
+  # pass runtime build options to :crop factory
+  build :crop, {:name => 'Potato'}.merge(args)
 end
 
 crop = Barn.build(:potato, :unit => 'sack')
@@ -132,6 +133,8 @@ crop.kind_of?(Crop) # true
 
 Since we can't infer the class Crop from the factory name :potato, we pass in an
 explicit class name so the ActiveRecord builder knows what class to instantiate.
+The runtime build options, `:unit => 'sack'` is available in the factory
+defintion via the `args` parameter.
 
 See [/lib/barn/builders](/lib/barn/builders) for more examples.
 
