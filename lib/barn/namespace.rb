@@ -1,5 +1,7 @@
 module Barn
   module Namespace
+    attr_writer :build_chain
+
     def define(name, factory_options = {}, &blk)
       blk ||= Proc.new {}
       factories[name] = Factory.new(name, factory_options, &blk)

@@ -31,7 +31,7 @@ module Barn
 
       def call(env)
         klass = begin
-          env[:factory].options[:class] || env[:factory].name.to_s.classify.constantize
+          (env[:factory].options[:class] || env[:factory].name.to_s.classify).constantize
         rescue NameError
           nil
         end
