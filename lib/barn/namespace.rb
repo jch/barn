@@ -2,7 +2,7 @@ module Barn
   module Namespace
     def define(name, factory_options = {}, &blk)
       blk ||= Proc.new {}
-      factories[name] = Factory.new(name, factory_options, &blk)
+      factories[name] = Factory.new(name, self, factory_options, &blk)
     end
 
     def build(name, build_options = {})
