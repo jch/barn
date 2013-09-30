@@ -18,9 +18,7 @@ module Builder
         end
       end
       Barn.reset
-      Barn.build_chain.clear
-      Barn.build_chain.unshift Barn::Builders::Hash
-      Barn.build_chain.unshift Barn::Builders::ActiveRecord
+      Barn.build_chain = [ Barn::Builders::ActiveRecord ]
     end
 
     def test_activerecord
