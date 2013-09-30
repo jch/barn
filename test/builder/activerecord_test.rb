@@ -1,7 +1,6 @@
 require 'barn'
 require 'minitest/autorun'
 require 'active_record'
-require 'debugger'
 
 class ::User < ActiveRecord::Base
 end
