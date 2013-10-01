@@ -3,7 +3,7 @@
 This guide is a tutorial through Barn's features. It's based on the
 factory_girl [Getting Started][factory_girl_guide] guide.
 
-### Setup
+## Setup
 
 Add `barn` to your Gemfile and re-bundle. There are no extra steps for Rails.
 
@@ -11,7 +11,7 @@ Add `barn` to your Gemfile and re-bundle. There are no extra steps for Rails.
 gem 'barn'
 ```
 
-### Defining Factories
+## Defining Factories
 
 Factories are lazily evaluated blocks that are stored in Barn. The return value
 of the block is what is returned by the factory when `Barn.build` is invoked.
@@ -41,7 +41,7 @@ factory.options  # :accessories => [:bell]
 Factory options are used to customize how objects are built by [build chains
 ](#build-chains). We'll cover this later in this guide.
 
-### Using Factories
+## Using Factories
 
 To create an object, call `build` with the name of the desired factory.
 
@@ -78,7 +78,7 @@ cow = Barn.build(:cow, :noise => 'quack')
 cow.noise  # quack
 ```
 
-### Build Chains
+## Build Chains
 
 `build_options` allow you to customize individual factories. But that can become
 tedious. That's where build chain come in. A build chain decorates objects
@@ -126,7 +126,7 @@ around. When an instance is needed, the `call` method is unraveled in order to
 build the object. Barn::Factory objects are the last object in the build chain,
 and their `call` method evaluates the defined lazy block.
 
-### ActiveRecord or other ORMs
+## ActiveRecord or other ORMs
 
 Hashes make great factory objects for defining functional test parameters to
 post to controllers. But to test your ORM models, you can customize your build
@@ -184,7 +184,7 @@ is passed back up the build chain and decorated.
 <#Crop @unit='sack' tools=[:shovel, :hoe]>
 ```
 
-### Composition
+## Composition
 
 We can build composed objects by defining factories in terms of other factories.
 
@@ -195,7 +195,7 @@ Barn.define :silo do
   ]
 end
 
-### Prototypes and Inheritance
+## Prototypes and Inheritance
 
 You may need to define a copy of a factory with a different set of attributes or
 define a subclass in terms of a parent. Be careful of what objects your build
@@ -214,7 +214,7 @@ crop.tools          # [:shovel, :hoe]
 crop.kind_of?(Crop) # true
 ```
 
-### Namespaces
+## Namespaces
 
 All factories are associated with a namespace. A namespace is a module that
 extends Barn::Namespace.
@@ -240,7 +240,7 @@ module Barn
 end
 ```
 
-### Helpers
+## Helpers
 
 Mix in Barn::Helpers to directly call `define` and `build` without having to
 type the Barn namespace.
@@ -296,7 +296,7 @@ class ChickenTest < ActiveSupport::TestCase
 end
 ```
 
-### Lazy Attributes
+## Lazy Attributes
 
 All Barn factories are lazy evaluated, removing the need for a special syntax
 for defining lazy attributes.
@@ -308,7 +308,7 @@ Barn.define :user do
 end
 ```
 
-### Aliases
+## Aliases
 
 Aliases can be implemented by defining another factory. They are not recommended
 because they give multiple names to the same factory, making it harder to
@@ -324,7 +324,7 @@ Barn.define :post do
 end
 ```
 
-### Dependent and Transient Attributes
+## Dependent and Transient Attributes
 
 Because everything in the block is plain ruby, you can define variables or do
 any other manipulation before returning the instance.
@@ -352,7 +352,7 @@ Barn.define :post do
 end
 ```
 
-### Sequences
+## Sequences
 
 TODO: not sure how to do sequences, but also not sure they're a great idea.
 
@@ -366,7 +366,7 @@ Barn.define do
 end
 ```
 
-### Traits
+## Traits
 
 TODO: not sure if this is something we should encourage
 
