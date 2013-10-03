@@ -1,3 +1,5 @@
+require "set"
+
 module Barn
   module Namespace
     attr_writer :build_chain
@@ -20,7 +22,7 @@ module Barn
     end
 
     def build_chain
-      @build_chain ||= [Barn::Builders::Hash]
+      Array(Set.new(@build_chain) << Barn::Builders::Hash)
     end
 
     def factories

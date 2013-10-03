@@ -1,7 +1,6 @@
-require 'barn'
-require 'minitest/autorun'
-require 'active_record'
-require 'debugger'
+require "barn"
+require "minitest/autorun"
+require "active_record"
 
 class BarnTest < MiniTest::Test
   def setup
@@ -20,12 +19,12 @@ class BarnTest < MiniTest::Test
 
   def test_build
     user = Barn.build(:user)
-    assert_equal 'jollyjerry@gmail.com', user[:email]
+    assert_equal "jollyjerry@gmail.com", user[:email]
   end
 
   def test_build_override
-    user = Barn.build(:user, :email => 'jch@whatcodecraves.com')
-    assert_equal 'jch@whatcodecraves.com', user[:email]
+    user = Barn.build(:user, :email => "jch@whatcodecraves.com")
+    assert_equal "jch@whatcodecraves.com", user[:email]
   end
 
   def test_build_unknown

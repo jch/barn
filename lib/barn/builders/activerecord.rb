@@ -37,7 +37,11 @@ module Barn
         end
 
         object = @app.call(env)
-        object = klass.new(object) if klass.ancestors.include?(::ActiveRecord::Base)
+
+        if klass && !object.instance_of?(klass) && klass.ancestors.include?(::ActiveRecord::Base)
+          object = klass.new(object)
+        end
+
         object
       end
     end

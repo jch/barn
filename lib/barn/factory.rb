@@ -14,7 +14,7 @@ module Barn
 
     # Returns built object
     def call(env)
-      @blk.call(env)
+      Barn.instance_eval(&@blk)
     end
   end
 end
