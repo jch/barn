@@ -188,12 +188,14 @@ is passed back up the build chain and decorated.
 
 We can build composed objects by defining factories in terms of other factories.
 
+```ruby
 Barn.define :silo do
   :crops => [
     build(:crop, :name => 'Potato'),
     build(:crop, :name => 'Brocoli')
   ]
 end
+```
 
 ## Prototypes and Inheritance
 
