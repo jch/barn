@@ -31,6 +31,26 @@ class BarnTest < MiniTest::Test
 
   end
 
+  def test_build_chain_hash_last
+    active_record = Barn::Builders::ActiveRecord
+    hash = Barn::Builders::Hash
+
+    Barn.build_chain = [ ]
+    assert_equal hash, Barn.build_chain.last
+
+    Barn.build_chain = [ ]
+    Barn.build_chain = [ active_record, hash ]
+    assert_equal hash, Barn.build_chain.last
+
+    Barn.build_chain = [ ]
+    Barn.build_chain = [ hash, active_record ]
+    assert_equal hash, Barn.build_chain.last
+
+    Barn.build_chain = [ ]
+    Barn.build_chain = [ active_record ]
+    assert_equal hash, Barn.build_chain.last
+  end
+
   def test_helpers
     custom_barn = Module.new do
       extend Barn::Namespace
