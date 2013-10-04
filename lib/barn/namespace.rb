@@ -20,7 +20,17 @@ module Barn
     end
 
     def build_chain
-      @build_chain ||= [Barn::Builders::Hash]
+      required = Barn::Builders::Hash
+
+      @build_chain ||= [required]
+      @build_chain.uniq!
+
+      unless @build_chain.last == required
+        @build_chain.delete(required)
+        @build_chain << required
+      end
+
+      @build_chain
     end
 
     def factories

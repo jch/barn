@@ -7,7 +7,18 @@ module Barn
 
       def call(env)
         object = @app.call(env)
-        object.merge(env[:args])
+
+        if env[:args].is_a?(::Hash)
+          if object.respond_to?(:merge)
+            object.merge!(env[:args])
+          else
+            env[:args].each do |key, value|
+              object.send("#{key}=", value)
+            end
+          end
+        end
+
+        object
       end
     end
   end
