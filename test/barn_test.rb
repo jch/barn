@@ -1,7 +1,4 @@
-require 'barn'
-require 'minitest/autorun'
-require 'active_record'
-require 'debugger'
+require "test_helper"
 
 class BarnTest < MiniTest::Test
   def setup

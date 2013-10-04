@@ -1,6 +1,5 @@
-require 'barn'
-require 'minitest/autorun'
-require 'active_record'
+require "test_helper"
+require "active_record"
 
 class ::User < ActiveRecord::Base
 end
@@ -9,7 +8,7 @@ module Builder
   class ActiveRecordTest < MiniTest::Test
 
     def setup
-      ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
+      ActiveRecord::Base.establish_connection :adapter => "sqlite3", :database => ":memory:"
       capture_io do
         ActiveRecord::Schema.define do
           create_table :users do |t|
