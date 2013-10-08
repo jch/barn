@@ -3,6 +3,7 @@ require "test_helper"
 class BarnTest < MiniTest::Test
   def setup
     Barn.reset
+    Barn.build_chain = [ Barn::Builders::Hash ]
     Barn.define :user do
       {:email => "jollyjerry@gmail.com"}
     end
