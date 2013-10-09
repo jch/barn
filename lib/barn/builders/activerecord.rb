@@ -30,16 +30,19 @@ module Barn
       end
 
       def call(env)
-        klass = begin
-          (env[:factory].options[:class] || env[:factory].name.to_s.classify).constantize
-        rescue NameError
-          nil
+        klass_name = env[:factory].options[:class] || env[:factory].name.to_s.classify
+
+        klass = if env[:klass].const_defined?(klass_name)
+          env[:klass].const_get(klass_name)
+        else
+          klass_name.safe_constantize
         end
 
         object = @app.call(env)
         object = klass.new(object) if klass.ancestors.include?(::ActiveRecord::Base)
         object
       end
+
     end
   end
 end
