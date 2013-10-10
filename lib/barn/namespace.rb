@@ -16,8 +16,7 @@ module Barn
 
       chained_builder.call \
         :factory => factory,
-        :args    => build_options,
-        :klass   => self
+        :args    => build_options
     end
 
     def build_chain
