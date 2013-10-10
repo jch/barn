@@ -1,11 +1,12 @@
 require "test_helper"
 require "active_record"
 
-class Barn::User < ActiveRecord::Base
-  self.table_name = "users"
-end
-
 class Barn::Builders::ActiveRecordTest < MiniTest::Test
+
+  class User < ActiveRecord::Base
+    self.table_name = "users"
+  end
+
   def setup
     ActiveRecord::Base.establish_connection :adapter => "sqlite3", :database => ":memory:"
     capture_io do
@@ -20,16 +21,16 @@ class Barn::Builders::ActiveRecordTest < MiniTest::Test
   end
 
   def test_activerecord
-    Barn.define :user do
+    Barn.define :user, :class => 'Barn::Builders::ActiveRecordTest::User' do
       {:email => "jollyjerry@gmail.com"}
     end
-    assert_kind_of Barn::User, Barn.build(:user)
+    assert_kind_of Barn::Builders::ActiveRecordTest::User, Barn.build(:user)
   end
 
   def test_explicit_class_reference
-    Barn.define :foo, :class => 'User' do
+    Barn.define :foo, :class => 'Barn::Builders::ActiveRecordTest::User' do
       {:email => "foo@gmail.com"}
     end
-    assert_kind_of Barn::User, Barn.build(:foo)
+    assert_kind_of Barn::Builders::ActiveRecordTest::User, Barn.build(:foo)
   end
 end
