@@ -6,15 +6,23 @@ module Barn
 
     attr_reader :name, :options
 
-    def initialize(name, options = {}, &blk)
+    # Generate a Barn instance.
+    #
+    #   name    - The String of the Barn Factory definition
+    #   klass   - The class or namespace of the Barn to run the block.
+    #   options - A Hash of options
+    #   blk     - Barn factory defintion blockk.
+    #
+    def initialize(name, klass, options = {}, &blk)
       @name    = name
+      @klass   = klass
       @options = options
       @blk     = blk
     end
 
     # Returns built object
     def call(env)
-      @blk.call(env)
+      @klass.instance_exec env, &@blk
     end
   end
 end
