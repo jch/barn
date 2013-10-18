@@ -2,7 +2,13 @@
 
 Store lazily evaluated blocks for building test fixtures.
 
+* Simple `define` and `build` API.
+* Plain Ruby, no domain specific language.
+* Extensible via [middleware interface](#build-chains).
+
 ## Usage
+
+For a full tutorial, check out the ["Getting Started"](/docs/getting_started.md) guide.
 
 ```ruby
 # Define factories with lazily evaluated blocks
