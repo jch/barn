@@ -33,5 +33,16 @@ module Builder
       end
       assert_kind_of User, Barn.build(:foo)
     end
+
+    def test_custom_traits
+      Barn.define :user do
+      end
+      Barn.define :custom do
+        build :user, :email => 'wut'
+      end
+      foo = Barn.build(:custom)
+      assert_kind_of user, foo
+      assert_equal 'wut', foo.email
+    end
   end
 end
