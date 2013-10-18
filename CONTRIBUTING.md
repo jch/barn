@@ -16,11 +16,11 @@ To run the full suite:
 
 To run a specific test file:
 
-  `$ bundle exec ruby test/barn_test.rb`
+  `$ bundle exec ruby -Itest test/barn_test.rb`
 
 To run a specific test:
 
-  `$ bundle exec ruby test/barn_test.rb -n test_define`
+  `$ bundle exec ruby -Itest test/barn_test.rb -n test_define`
 
 [issues]: https://github.com/jch/barn/issues
 [pr]: https://help.github.com/articles/using-pull-requests
