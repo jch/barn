@@ -30,13 +30,14 @@ module Barn
       end
 
       def call(env)
+        object = @app.call(env)
+
         klass = begin
           (env[:factory].options[:class] || env[:factory].name.to_s.classify).constantize
         rescue NameError
-          nil
+          return object  # no ActiveRecord subclass found
         end
 
-        object = @app.call(env)
         object = klass.new(object) if klass.ancestors.include?(::ActiveRecord::Base)
         object
       end

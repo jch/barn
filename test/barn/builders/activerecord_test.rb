@@ -32,5 +32,10 @@ class Barn::Builders::ActiveRecordTest < MiniTest::Test
       {:email => "foo@gmail.com"}
     end
     assert_kind_of Barn::Builders::ActiveRecordTest::User, Barn.build(:foo)
+  def test_no_class
+    Barn.define :bad_horse do
+      {:email => "bad@horse.com"}
+    end
+    assert_kind_of Hash, Barn.build(:bad_horse)
   end
 end
