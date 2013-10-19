@@ -6,6 +6,9 @@ require "barn/helpers"
 require "barn/builders/hash"
 
 module Barn
+  class Exists < StandardError; end
+  class Unknown < StandardError; end
+
   extend Namespace
 
   module Builders
