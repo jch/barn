@@ -1,4 +1,4 @@
-# Barn
+# Barn [![Build Status](https://travis-ci.org/jch/barn.png?branch=master)](https://travis-ci.org/jch/barn)
 
 Store lazily evaluated blocks for building test fixtures.
 
