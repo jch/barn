@@ -14,9 +14,10 @@ class BarnTest < MiniTest::Test
   end
 
   def test_double_define_error
-    assert_raises Barn::DuplicateFactoryError do
+    error = assert_raises Barn::DuplicateFactoryError do
       Barn.define :user
     end
+    assert_equal "factory `user' already defined", error.message
   end
 
   def test_build
@@ -30,9 +31,10 @@ class BarnTest < MiniTest::Test
   end
 
   def test_build_unknown
-    assert_raises Barn::UndefinedFactoryError do
+    error = assert_raises Barn::UndefinedFactoryError do
       Barn.build :unknown
     end
+    assert_equal "factory `unknown' not defined", error.message
   end
 
   def test_helpers
