@@ -3,14 +3,14 @@ module Barn
     attr_writer :build_chain
 
     def define(name, factory_options = {}, &blk)
-      raise Barn::Exists if factories.has_key?(name)
+      raise Barn::DuplicateFactoryError if factories.has_key?(name)
 
       blk ||= Proc.new {}
       factories[name] = Factory.new(name, self, factory_options, &blk)
     end
 
     def build(name, build_options = {})
-      raise Barn::Unknown unless factories.has_key?(name)
+      raise Barn::UndefinedFactoryError unless factories.has_key?(name)
 
       factory = factories[name]
 

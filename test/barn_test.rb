@@ -14,7 +14,7 @@ class BarnTest < MiniTest::Test
   end
 
   def test_double_define_error
-    assert_raises Barn::Exists do
+    assert_raises Barn::DuplicateFactoryError do
       Barn.define :user
     end
   end
@@ -30,7 +30,7 @@ class BarnTest < MiniTest::Test
   end
 
   def test_build_unknown
-    assert_raises Barn::Unknown do
+    assert_raises Barn::UndefinedFactoryError do
       Barn.build :unknown
     end
   end
